@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio 2024</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Poppins:wght@300;400;500;600;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+
+<style>
+  *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#222;
+color:#f5f1e8;
+overflow-x:hidden;
+}
+
+/* GRID PAPER BACKGROUND */
+
+.grid-paper{
+min-height:100vh;
+background:
+linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+background-size:25px 25px;
+position:relative;
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+text-align:center;
+padding:60px 20px 40px;
+background:#f5f1e8;
+color:#222;
+overflow:hidden;
+}
+
+/* ==========================
+   ANIMATION HELPERS
+========================== */
+
+.hidden{
+opacity:0;
+transform:translateY(50px);
+transition:all .8s ease;
+}
+
+.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* Scroll Progress */
+
+.scroll-progress{
+position:fixed;
+top:0;
+left:0;
+height:4px;
+width:0;
+background:#f4b400;
+z-index:99999;
+}
+
+/* Floating Doodles */
+
+.floating-doodle{
+position:fixed;
+bottom:-50px;
+color:#f4b400;
+pointer-events:none;
+z-index:10;
+animation:floatUp linear forwards;
+opacity:.8;
+}
+
+@keyframes floatUp{
+
+0%{
+transform:translateY(0) rotate(0deg);
+opacity:0;
+}
+
+20%{
+opacity:1;
+}
+
+100%{
+transform:translateY(-120vh) rotate(360deg);
+opacity:0;
+}
+
+}
+
+/* Smooth Hover */
+
+.tool,
+.contact-item,
+.skills span{
+transition:all .3s ease;
+}
+
+.skills span:hover{
+transform:translateY(-4px) scale(1.05);
+background:#f4b400;
+color:#222;
+}
+
+/* Image Zoom */
+
+.photo-wrapper img{
+transition:transform .6s ease;
+}
+
+.polaroid:hover img{
+transform:scale(1.05);
+}
+
+/* Glass Glow */
+
+.intro:hover,
+.contact:hover,
+.experience:hover,
+.card-section:hover{
+box-shadow:
+0 15px 40px rgba(0,0,0,.4),
+0 0 25px rgba(244,180,0,.12);
+}
+
+/* TORN PAPER EFFECT */
+
+.hero::after{
+content:"";
+position:absolute;
+bottom:-1px;
+left:0;
+width:100%;
+height:90px;
+background:#222;
+clip-path:polygon(
+0 30%,
+8% 45%,
+15% 20%,
+25% 60%,
+35% 25%,
+48% 70%,
+60% 35%,
+72% 75%,
+82% 30%,
+92% 65%,
+100% 35%,
+100% 100%,
+0 100%
+);
+}
+
+.year-tag{
+display:inline-block;
+font-family:'Caveat',cursive;
+font-size:28px;
+padding:4px 16px;
+border:2px solid #222;
+border-radius:30px;
+transform:rotate(-8deg);
+margin-bottom:10px;
+}
+
+.logo{
+font-family:'Playfair Display',serif;
+font-size:clamp(60px,10vw,120px);
+font-weight:800;
+line-height:1;
+}
+
+.logo span{
+color:#f4b400;
+}
+
+.tagline{
+margin-top:15px;
+font-size:14px;
+letter-spacing:1px;
+font-weight:500;
+}
+
+.star{
+position:absolute;
+font-size:28px;
+color:#f4b400;
+}
+
+.star1{
+top:30px;
+left:80px;
+}
+
+.star2{
+right:80px;
+bottom:100px;
+}
+
+/* MAIN SECTION */
+
+.main-container{
+display:grid;
+grid-template-columns:340px 1fr;
+gap:40px;
+padding:50px;
+max-width:1400px;
+margin:auto;
+}
+
+/* LEFT PANEL */
+
+.left-panel{
+display:flex;
+flex-direction:column;
+gap:25px;
+}
+
+.polaroid{
+background:#f5f1e8;
+padding:18px;
+color:#222;
+border-radius:18px;
+box-shadow:0 15px 35px rgba(0,0,0,.3);
+transform:rotate(-2deg);
+}
+
+.photo-wrapper{
+position:relative;
+overflow:hidden;
+border-radius:12px;
+}
+
+.photo-wrapper img{
+width:100%;
+display:block;
+border-radius:12px;
+}
+
+.scribble{
+position:absolute;
+border:4px solid #00d1ff;
+border-radius:20px;
+}
+
+.scribble-1{
+width:120px;
+height:120px;
+top:20px;
+left:20px;
+transform:rotate(20deg);
+}
+
+.scribble-2{
+width:150px;
+height:150px;
+bottom:15px;
+right:15px;
+transform:rotate(-25deg);
+}
+
+.polaroid h3{
+text-align:center;
+margin-top:15px;
+font-size:22px;
+}
+
+/* CARDS */
+
+.card-section{
+background:#2c2c2c;
+padding:25px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.3);
+}
+
+.card-section h2{
+font-family:'Playfair Display',serif;
+margin-bottom:18px;
+font-size:30px;
+}
+
+.education-item{
+margin-bottom:18px;
+}
+
+.education-item h4{
+margin-bottom:6px;
+color:#f4b400;
+}
+
+/* TOOLS */
+
+.tool-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+}
+
+.tool{
+background:#383838;
+padding:18px;
+border-radius:16px;
+text-align:center;
+transition:.3s;
+cursor:pointer;
+}
+
+.tool:hover{
+transform:translateY(-5px);
+}
+
+.tool i{
+font-size:32px;
+margin-bottom:10px;
+display:block;
+color:#f4b400;
+}
+
+/* SKILLS */
+
+.skills{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.skills span{
+background:#383838;
+padding:8px 12px;
+border-radius:40px;
+font-size:13px;
+}
+
+/* RIGHT PANEL */
+
+.right-panel{
+display:flex;
+flex-direction:column;
+gap:30px;
+}
+
+.intro,
+.contact,
+.experience{
+background:#2c2c2c;
+padding:30px;
+border-radius:24px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.intro h2,
+.contact h2,
+.experience h2{
+font-family:'Playfair Display',serif;
+font-size:50px;
+margin-bottom:15px;
+}
+
+.intro p{
+line-height:1.9;
+color:#ddd;
+}
+
+/* CONTACT */
+
+.contact-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+}
+
+.contact-item{
+background:#383838;
+padding:16px;
+border-radius:16px;
+display:flex;
+align-items:center;
+gap:12px;
+transition:.3s;
+}
+
+.contact-item:hover{
+transform:translateY(-5px);
+}
+
+.contact-item i{
+font-size:22px;
+color:#f4b400;
+}
+
+/* TIMELINE */
+
+.timeline{
+position:relative;
+padding-left:30px;
+}
+
+.timeline::before{
+content:"";
+position:absolute;
+left:8px;
+top:0;
+width:3px;
+height:100%;
+background:#f4b400;
+}
+
+.timeline-item{
+position:relative;
+margin-bottom:35px;
+}
+
+.timeline-item::before{
+content:"";
+position:absolute;
+left:-29px;
+top:8px;
+width:16px;
+height:16px;
+background:#f4b400;
+border-radius:50%;
+}
+
+.year{
+display:inline-block;
+background:#f4b400;
+color:#222;
+font-weight:700;
+padding:6px 12px;
+border-radius:30px;
+margin-bottom:10px;
+}
+
+.timeline-item h3{
+margin-bottom:8px;
+}
+
+.timeline-item p{
+color:#d9d9d9;
+line-height:1.8;
+}
+
+/* HOVER EFFECTS */
+
+.card-section,
+.intro,
+.contact,
+.experience,
+.polaroid{
+transition:.35s;
+}
+
+.card-section:hover,
+.intro:hover,
+.contact:hover,
+.experience:hover,
+.polaroid:hover{
+transform:translateY(-5px);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+
+.main-container{
+grid-template-columns:1fr;
+padding:30px;
+}
+
+.left-panel{
+order:1;
+}
+
+.right-panel{
+order:2;
+}
+
+.logo{
+font-size:72px;
+}
+
+}
+
+@media(max-width:600px){
+
+.hero{
+padding:50px 20px;
+}
+
+.logo{
+font-size:56px;
+}
+
+.intro h2,
+.contact h2,
+.experience h2{
+font-size:38px;
+}
+
+.main-container{
+padding:20px;
+}
+
+.card-section,
+.intro,
+.contact,
+.experience{
+padding:22px;
+}
+
+.contact-grid{
+grid-template-columns:1fr;
+}
+
+}
+</style>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+</head>
+<body>
+
+<div class="grid-paper">
+
+<header class="hero">
+
+<div class="star star1">✦</div>
+<div class="star star2">✦</div>
+
+<div class="year-tag">2024</div>
+
+<h1 class="logo">
+Portf<span>o</span>lio
+</h1>
+
+<p class="tagline">
+Web Developer • UI/UX Designer • Digital Creator
+</p>
+
+</header>
+
+<section class="main-container">
+
+<!-- LEFT PANEL -->
+
+<aside class="left-panel">
+
+<div class="polaroid">
+
+<div class="photo-wrapper">
+
+<img src="c:\Users\pitaberrai\Downloads\ChatGPT Image May 4, 2026, 06_16_17 PM(1)(1).png" alt="Profile">
+
+<div class="scribble scribble-1"></div>
+<div class="scribble scribble-2"></div>
+
+</div>
+
+<h3>Pitamber Rai</h3>
+
+</div>
+
+<div class="card-section">
+
+<h2>Education</h2>
+
+<div class="education-item">
+
+<h4>Bachelor of Computer Applications</h4>
+
+<p>
+Your University Name
+</p>
+
+</div>
+
+<div class="education-item">
+
+<h4>Web Development Certification</h4>
+
+<p>
+Frontend & Backend Development
+</p>
+
+</div>
+
+</div>
+
+<div class="card-section">
+
+<h2>Tools</h2>
+
+<div class="tool-grid">
+
+<div class="tool">
+<i class="fa-solid fa-code"></i>
+<span>VS Code</span>
+</div>
+
+<div class="tool">
+<i class="fa-solid fa-server"></i>
+<span>XAMPP</span>
+</div>
+
+</div>
+
+</div>
+
+<div class="card-section">
+
+<h2>Skills</h2>
+
+<div class="skills">
+
+<span>HTML</span>
+<span>CSS</span>
+<span>JavaScript</span>
+<span>React</span>
+<span>Node.js</span>
+<span>UI/UX</span>
+<span>Responsive Design</span>
+<span>API Integration</span>
+<span>Database</span>
+
+</div>
+
+</div>
+
+</aside>
+
+<!-- RIGHT PANEL -->
+
+<main class="right-panel">
+
+<section class="intro">
+
+<h2>Hello !</h2>
+
+<p>
+I'm a passionate web developer and creative designer focused on building modern digital experiences. I blend aesthetics with functionality to create engaging websites, responsive interfaces, and memorable user experiences.
+</p>
+
+</section>
+
+<section class="contact">
+
+<h2>Contact</h2>
+
+<div class="contact-grid">
+
+<div class="contact-item">
+<i class="fa-solid fa-phone"></i>
+<span>+92 335-2115997</span>
+</div>
+
+<div class="contact-item">
+<i class="fa-solid fa-envelope"></i>
+<span>narendarrai579@gmail.com</span>
+</div>
+
+<div class="contact-item">
+<i class="fa-brands fa-linkedin"></i>
+<span>LinkedIn</span>
+</div>
+
+<div class="contact-item">
+<i class="fa-brands fa-github"></i>
+<span>GitHub</span>
+</div>
+
+<div class="contact-item">
+<i class="fa-solid fa-globe"></i>
+<span>Portfolio</span>
+</div>
+
+</div>
+
+</section>
+
+<section class="experience">
+
+<h2>Experience</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="year">
+2023 — Present
+</div>
+
+<h3>Frontend Developer</h3>
+
+<p>
+Designed responsive websites, optimized performance, and developed interactive user interfaces.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="year">
+2022 — 2023
+</div>
+
+<h3>UI/UX Designer</h3>
+
+<p>
+Created wireframes, prototypes, and design systems for modern digital products.
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="year">
+2021 — 2022
+</div>
+
+<h3>Freelance Web Developer</h3>
+
+<p>
+Built custom websites, landing pages, and web applications for clients worldwide.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+</section>
+
+</div>
+
+<script>
+     /* ==========================
+   PORTFOLIO INTERACTIONS
+========================== */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* Fade-in animation */
+
+    const sections = document.querySelectorAll(
+        ".polaroid,.card-section,.intro,.contact,.experience"
+    );
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("show");
+                }
+            });
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+    sections.forEach((item) => {
+        item.classList.add("hidden");
+        observer.observe(item);
+    });
+
+    /* Random rotation for scrapbook feel */
+
+    document.querySelectorAll(".skills span").forEach((tag) => {
+        const deg = (Math.random() * 6 - 3).toFixed(1);
+        tag.style.transform = `rotate(${deg}deg)`;
+    });
+
+});
+
+
+/* ==========================
+   PARALLAX EFFECT
+========================== */
+
+window.addEventListener("mousemove", (e) => {
+
+    const x = (window.innerWidth / 2 - e.clientX) / 50;
+    const y = (window.innerHeight / 2 - e.clientY) / 50;
+
+    const hero = document.querySelector(".hero");
+
+    hero.style.transform =
+        `translate(${x * 0.5}px, ${y * 0.5}px)`;
+});
+
+
+/* ==========================
+   FLOATING DOODLES
+========================== */
+
+function createDoodle() {
+
+    const doodle = document.createElement("div");
+
+    doodle.classList.add("floating-doodle");
+
+    const symbols = [
+        "✦",
+        "✧",
+        "○",
+        "△",
+        "✸"
+    ];
+
+    doodle.innerHTML =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+    doodle.style.left =
+        Math.random() * window.innerWidth + "px";
+
+    doodle.style.fontSize =
+        Math.random() * 20 + 10 + "px";
+
+    doodle.style.animationDuration =
+        Math.random() * 8 + 6 + "s";
+
+    document.body.appendChild(doodle);
+
+    setTimeout(() => {
+        doodle.remove();
+    }, 12000);
+}
+
+setInterval(createDoodle, 2500);
+
+
+/* ==========================
+   POLAROID TILT
+========================== */
+
+const polaroid = document.querySelector(".polaroid");
+
+if (polaroid) {
+
+    polaroid.addEventListener("mousemove", (e) => {
+
+        const rect = polaroid.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const rotateY =
+            ((x / rect.width) - 0.5) * 10;
+
+        const rotateX =
+            ((y / rect.height) - 0.5) * -10;
+
+        polaroid.style.transform =
+            `rotate(-2deg)
+             perspective(1000px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)`;
+    });
+
+    polaroid.addEventListener("mouseleave", () => {
+
+        polaroid.style.transform =
+            "rotate(-2deg)";
+    });
+}
+
+
+/* ==========================
+   SCROLL PROGRESS BAR
+========================== */
+
+const progressBar = document.createElement("div");
+
+progressBar.classList.add("scroll-progress");
+
+document.body.appendChild(progressBar);
+
+window.addEventListener("scroll", () => {
+
+    const totalHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+
+    const progress =
+        (window.scrollY / totalHeight) * 100;
+
+    progressBar.style.width =
+        progress + "%";
+});
+
+
+/* ==========================
+   TYPEWRITER EFFECT
+========================== */
+
+const tagline = document.querySelector(".tagline");
+
+if (tagline) {
+
+    const text = tagline.innerText;
+
+    tagline.innerText = "";
+
+    let index = 0;
+
+    function type() {
+
+        if (index < text.length) {
+
+            tagline.innerText += text.charAt(index);
+
+            index++;
+
+            setTimeout(type, 40);
+        }
+    }
+
+    setTimeout(type, 500);
+}
+</script>
+
+</body>
+</html>
